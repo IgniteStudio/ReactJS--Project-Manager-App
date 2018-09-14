@@ -3,11 +3,11 @@ import uuid from 'uuid';
 import PropTypes from 'prop-types';
 
 
-class AddProject extends Component {
+class AddTodo extends Component {
   constructor(){
       super();
       this.state = {
-          newProject:{}
+          newTodo:{}
       }
   }
   
@@ -20,13 +20,13 @@ class AddProject extends Component {
       if(this.refs.title.value === ''){
         alert('Title is required');
       } else {
-        this.setState({newProject:{
+        this.setState({newItem:{
             id: uuid.v4(),
             title: this.refs.title.value,
             category: this.refs.category.value
         }}, function(){
             //console.log(this.state);
-            this.props.addProject(this.state.newProject);
+            this.props.addTodo(this.state.newTodo);
         });
       }
       e.preventDefault();
@@ -37,7 +37,7 @@ class AddProject extends Component {
       });
     return (
       <div>
-        <h3>Add Projects</h3>
+        <h3>Add Todos</h3>
         <form onSubmit={this.handleSubmit.bind(this)}>
             <div>
                 <label>Title</label><br />
@@ -60,9 +60,9 @@ class AddProject extends Component {
 
 
 
-AddProject.propTypes = {
+AddTodo.propTypes = {
     categories: PropTypes.array,
-    addProject: PropTypes.func
+    addTodo: PropTypes.func
 }
 
-export default AddProject;
+export default AddTodo;
